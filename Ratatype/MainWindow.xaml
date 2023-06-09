@@ -1,0 +1,328 @@
+﻿<Window x:Class="Ratatype.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ratatype"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="810"
+        PreviewKeyUp="ReturnedAll"
+        PreviewKeyDown="ClickKey"
+        WindowStartupLocation="CenterScreen">
+
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="9*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <Label Content="Speed:"></Label>
+                <Label Content="0" x:Name="SpeedLabel"></Label>
+                <Label Content="chars/min"></Label>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="2" Orientation="Horizontal">
+                <Label Content="Fails:"></Label>
+                <Label Content="0" x:Name="FailsLabel"></Label>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Margin="2" Orientation="Horizontal">
+                <Label Content="Difficulty:"></Label>
+                <Label Content="1" x:Name="DifficultLabel"></Label>
+                <Slider Width="100" Margin="4" Maximum="5" Minimum="1" x:Name="SliderDifficulty" ValueChanged="SliderDifficulty_ValueChanged" ></Slider>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" Margin="2" Orientation="Horizontal">
+                <CheckBox Content="Case Sensitive" Margin="4" x:Name="CaseSensetive"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Width="200" Height="20" Margin="3" Content="Start" x:Name="StartBtn" Click="StartBtn_Click"></Button>
+            <Button Width="200" Height="20" Margin="3" Content="Stop" x:Name="StopBtn" Click="StopBtn_Click"></Button>
+        </StackPanel>
+
+        <Grid  Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBox Grid.Row="0" Background="Aqua" IsReadOnly="True" x:Name="HelperBox" FontSize="23"></TextBox>
+
+            <TextBox Grid.Row="1" Background="Aqua" x:Name="LineWriter" FontSize="23"></TextBox>
+        </Grid>
+
+        <Grid  Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="Oem3">
+                    <TextBlock Text="`" Style="{StaticResource StyleTextButton}" x:Name="_Apostrophe"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="D1">
+                    <TextBlock Text="1" Style="{StaticResource StyleTextButton}" x:Name="_1"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="D2">
+                    <TextBlock Text="2" Style="{StaticResource StyleTextButton}" x:Name="_2"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderBlueStyleMain}" x:Name="D3">
+                    <TextBlock Text="3" Style="{StaticResource StyleTextButton}" x:Name="_3"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderRedStyleMain}" x:Name="D4">
+                    <TextBlock Text="4" Style="{StaticResource StyleTextButton}" x:Name="_4"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderYellowStyleMain}" x:Name="D5">
+                    <TextBlock Text="5" Style="{StaticResource StyleTextButton}" x:Name="_5"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderYellowStyleMain}" x:Name="D6">
+                    <TextBlock Text="6" Style="{StaticResource StyleTextButton}" x:Name="_6"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderOrangeStyleMain}" x:Name="D7">
+                    <TextBlock Text="7" Style="{StaticResource StyleTextButton}" x:Name="_7"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderRedStyleMain}" x:Name="D8">
+                    <TextBlock Text="8" Style="{StaticResource StyleTextButton}" x:Name="_8"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderBlueStyleMain}" x:Name="D9">
+                    <TextBlock Text="9" Style="{StaticResource StyleTextButton}" x:Name="_9"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="D0">
+                    <TextBlock Text="0" Style="{StaticResource StyleTextButton}" x:Name="_0"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="OemMinus">
+                    <TextBlock Text="-" Style="{StaticResource StyleTextButton}" x:Name="_Dash"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="OemPlus">
+                    <TextBlock Text="=" Style="{StaticResource StyleTextButton}" x:Name="_Equals"></TextBlock>
+                </Border>
+
+                <Border Width="90" Style="{StaticResource BorderGrayStyleMain}" x:Name="Back">
+                    <TextBlock Text="Backspace" Style="{StaticResource StyleTextButton}" x:Name="_Backspace"></TextBlock>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="70" x:Name="Tab">
+                    <TextBlock Text="Tab" Style="{StaticResource StyleTextButton}" x:Name="_Tab"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="Q">
+                    <TextBlock Text="q" Style="{StaticResource StyleTextButton}" x:Name="_Q"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderBlueStyleMain}" x:Name="W">
+                    <TextBlock Text="w" Style="{StaticResource StyleTextButton}" x:Name="_W"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderRedStyleMain}" x:Name="E">
+                    <TextBlock Text="e" Style="{StaticResource StyleTextButton}" x:Name="_E"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderYellowStyleMain}" x:Name="R">
+                    <TextBlock Text="r" Style="{StaticResource StyleTextButton}" x:Name="_R"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderYellowStyleMain}" x:Name="T">
+                    <TextBlock Text="t" Style="{StaticResource StyleTextButton}" x:Name="_T"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderOrangeStyleMain}" x:Name="Y">
+                    <TextBlock Text="y" Style="{StaticResource StyleTextButton}" x:Name="_Y"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderOrangeStyleMain}" x:Name="U">
+                    <TextBlock Text="u" Style="{StaticResource StyleTextButton}" x:Name="_U"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderRedStyleMain}" x:Name="I">
+                    <TextBlock Text="i" Style="{StaticResource StyleTextButton}" x:Name="_I"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderBlueStyleMain}" x:Name="O">
+                    <TextBlock Text="o" Style="{StaticResource StyleTextButton}" x:Name="_O"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="P">
+                    <TextBlock Text="p" Style="{StaticResource StyleTextButton}" x:Name="_P"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="OemOpenBrackets">
+                    <TextBlock Text="[" Style="{StaticResource StyleTextButton}" x:Name="_SquareBracketLeft"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="Oem6">
+                    <TextBlock Text="]" Style="{StaticResource StyleTextButton}" x:Name="_SquareBracketRight"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" Width="70" x:Name="Oem5">
+                    <TextBlock Text="\" Style="{StaticResource StyleTextButton}" x:Name="_SlashL"></TextBlock>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="100" x:Name="Capital">
+                    <TextBlock Text="Caps lock" Style="{StaticResource StyleTextButton}" x:Name="_CapsLock"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="A">
+                    <TextBlock Text="a" Style="{StaticResource StyleTextButton}" x:Name="_A"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderBlueStyleMain}" x:Name="S">
+                    <TextBlock Text="s" Style="{StaticResource StyleTextButton}" x:Name="_S"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderRedStyleMain}" x:Name="D">
+                    <TextBlock Text="d" Style="{StaticResource StyleTextButton}" x:Name="_D"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderYellowStyleMain}" x:Name="F">
+                    <TextBlock Text="f" Style="{StaticResource StyleTextButton}" x:Name="_F"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderYellowStyleMain}" x:Name="G">
+                    <TextBlock Text="g" Style="{StaticResource StyleTextButton}" x:Name="_G"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderOrangeStyleMain}" x:Name="H">
+                    <TextBlock Text="h" Style="{StaticResource StyleTextButton}" x:Name="_H"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderOrangeStyleMain}" x:Name="J">
+                    <TextBlock Text="j" Style="{StaticResource StyleTextButton}" x:Name="_J"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderRedStyleMain}" x:Name="K">
+                    <TextBlock Text="k" Style="{StaticResource StyleTextButton}" x:Name="_K"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderBlueStyleMain}" x:Name="L">
+                    <TextBlock Text="l" Style="{StaticResource StyleTextButton}" x:Name="_L"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="Oem1">
+                    <TextBlock Text=";" Style="{StaticResource StyleTextButton}" x:Name="_Semicolon"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="OemQuotes">
+                    <TextBlock Text="'" Style="{StaticResource StyleTextButton}" x:Name="_SingleBrace"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="95" x:Name="Return">
+                    <TextBlock Text="Enter" Style="{StaticResource StyleTextButton}" x:Name="_Enter"></TextBlock>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="124" x:Name="LeftShift">
+                    <TextBlock Text="Shift" Style="{StaticResource StyleTextButton}" x:Name="_LShift"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="Z">
+                    <TextBlock Text="z" Style="{StaticResource StyleTextButton}" x:Name="_Z"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderBlueStyleMain}" x:Name="X">
+                    <TextBlock Text="x" Style="{StaticResource StyleTextButton}" x:Name="_X"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderRedStyleMain}" x:Name="C">
+                    <TextBlock Text="c" Style="{StaticResource StyleTextButton}" x:Name="_C"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderYellowStyleMain}" x:Name="V">
+                    <TextBlock Text="v" Style="{StaticResource StyleTextButton}" x:Name="_V"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderYellowStyleMain}" x:Name="B">
+                    <TextBlock Text="b" Style="{StaticResource StyleTextButton}" x:Name="_B"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderOrangeStyleMain}" x:Name="N">
+                    <TextBlock Text="n" Style="{StaticResource StyleTextButton}" x:Name="_N"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderOrangeStyleMain}" x:Name="M">
+                    <TextBlock Text="m" Style="{StaticResource StyleTextButton}" x:Name="_M"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderRedStyleMain}" x:Name="OemComma">
+                    <TextBlock Text="," Style="{StaticResource StyleTextButton}" x:Name="_Comma"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderBlueStyleMain}" x:Name="OemPeriod">
+                    <TextBlock Text="." Style="{StaticResource StyleTextButton}" x:Name="_Dot"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGreenStyleMain}" x:Name="OemQuestion">
+                    <TextBlock Text="/" Style="{StaticResource StyleTextButton}" x:Name="_SlashR"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="125" x:Name="RightShift">
+                    <TextBlock Text="Shift" Style="{StaticResource StyleTextButton}" x:Name="_RShift"></TextBlock>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" Orientation="Horizontal">
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="75" x:Name="LeftCtrl">
+                    <TextBlock Text="Ctrl" Style="{StaticResource StyleTextButton}"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="75" x:Name="LWin">
+                    <TextBlock Text="Win" Style="{StaticResource StyleTextButton}"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="75">
+                    <TextBlock Text="Alt" Style="{StaticResource StyleTextButton}"></TextBlock>
+                </Border>
+
+                <Border Background="#FFBB70" Width="319" Height="50" BorderBrush="Black" BorderThickness="1.5" CornerRadius="5" Margin="2" x:Name="Space">
+                    <TextBlock Text="Space" Style="{StaticResource StyleTextButton}"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="75">
+                    <TextBlock Text="Alt" Style="{StaticResource StyleTextButton}"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="75" x:Name="RWin">
+                    <TextBlock Text="Win" Style="{StaticResource StyleTextButton}"></TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource BorderGrayStyleMain}" Width="75" x:Name="RightCtrl">
+                    <TextBlock Text="Ctrl" Style="{StaticResource StyleTextButton}"></TextBlock>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
