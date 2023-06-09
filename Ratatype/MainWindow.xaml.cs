@@ -100,7 +100,7 @@ namespace Ratatype
                                 {
                                     if((res as Border).Name == e.Key.ToString())
                                     {
-                                        (res as Border).Opacity = 0.7;
+                                        (res as Border).Opacity = 0.5;
                                         if (e.Key == Key.LeftShift || e.Key == Key.RightShift)
                                         {
                                             ShiftPressSymbols();
